@@ -23,7 +23,34 @@ class StoreBrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => [
+                'required',
+                'string',
+                'max:255'
+            ],
+            'slug' => [
+                'required',
+                'string',
+                'max:255'
+            ],
+            'image' => [
+                'nullable',
+                'mimes:jpeg,png,jpg,gif,svg',
+                'max:2048'
+            ],
+            'status' => [
+                'required',
+                'integer'
+            ],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Name is required',
+            'slug.required' => 'Slug is required',
+            'status.required' => 'Status is required',
         ];
     }
 }

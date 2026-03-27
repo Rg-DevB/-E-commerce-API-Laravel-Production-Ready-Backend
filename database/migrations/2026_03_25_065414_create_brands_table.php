@@ -14,8 +14,9 @@ return new class extends Migration {
             $table->id();
             $table->string('uuid');
             $table->string('name');
-            $table->string('image');
-            $table->boolean('is_active')->default(1);
+            $table->string('slug');
+            $table->string('image')->nullable();
+            $table->tinyInteger('status')->default(0)->comment('0 = Hidden, 1 = Visible');
             $table->timestamps();
         });
     }

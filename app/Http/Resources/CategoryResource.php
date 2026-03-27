@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class CategoryResource extends JsonResource
 {
@@ -18,7 +19,7 @@ class CategoryResource extends JsonResource
             'id' => $this->id,
             'uuid' => $this->uuid,
             'name' => $this->name,
-            'slug' => $this->Str::slug($this->slug),
+            'slug' => Str::slug($this->slug),
             'description' => $this->description,
             'status' => $this->status == 1 ? 'Visible' : 'Hidden',
             'popular' => $this->popular,

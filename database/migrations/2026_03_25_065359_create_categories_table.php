@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('slug');
             $table->mediumText('description');
-            $table->tinyInteger('status')->default('0')->comment('0 = Visible, 1 = Hidden');
+            $table->tinyInteger('status')->default('0')->comment('0 = Hidden, 1 = Visible');
             $table->boolean('popular');
             $table->string('image')->nullable();
             $table->string('meta_title');

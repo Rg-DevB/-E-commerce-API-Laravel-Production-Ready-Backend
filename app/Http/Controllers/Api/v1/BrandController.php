@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\BrandResource;
+use App\Models\Brand;
 
 class BrandController extends Controller
 {
@@ -13,6 +15,8 @@ class BrandController extends Controller
     public function index()
     {
         //
+        $brands = Brand::all();
+        return BrandResource::collection($brands);
     }
 
     /**
@@ -21,6 +25,8 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         //
+        $brand = Brand::create($request->validated());
+        return new BrandResource($brand);
     }
 
     /**
@@ -29,6 +35,8 @@ class BrandController extends Controller
     public function show(string $id)
     {
         //
+        $brand = Brand::findOrFail($id);
+        return new BrandResource($brand);
     }
 
     /**
@@ -37,6 +45,9 @@ class BrandController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $brand = Brand::findOrFail($id);
+        $brand->update($request->validated());
+        return new BrandResource($brand);
     }
 
     /**
@@ -45,5 +56,10 @@ class BrandController extends Controller
     public function destroy(string $id)
     {
         //
+        $brand = Brand::findOrFail($id);
+        $brand->delete();
+        return response()->json([
+            'message' => 'Brand deleted successfully',
+        ]);
     }
 }

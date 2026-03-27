@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class BrandResource extends JsonResource
 {
@@ -14,6 +15,13 @@ class BrandResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'uuid' => $this->uuid,
+            'name' => $this->name,
+            'slug' => Str::slug($this->slug),
+            'image' => $this->image,
+            'status' => $this->status == true ? '1' : '0',
+        ];
     }
 }
