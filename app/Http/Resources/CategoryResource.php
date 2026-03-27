@@ -14,6 +14,18 @@ class CategoryResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'uuid' => $this->uuid,
+            'name' => $this->name,
+            'slug' => $this->Str::slug($this->slug),
+            'description' => $this->description,
+            'status' => $this->status == 1 ? 'Visible' : 'Hidden',
+            'popular' => $this->popular,
+            'image' => $this->image,
+            'meta_title' => $this->meta_title,
+            'meta_description' => $this->meta_description,
+            'meta_keywords' => $this->meta_keywords,
+        ];
     }
 }

@@ -23,7 +23,60 @@ class StoreCategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+
+            'name' => [
+                'required',
+                'string',
+                'max:255'
+            ],
+            'slug' => [
+                'required',
+                'string',
+                'max:255'
+            ],
+            'description' => [
+                'required',
+                'string'
+            ],
+            'status' => [
+                'required',
+                'integer'
+            ],
+            'popular' => [
+                'required',
+                'boolean'
+            ],
+            'image' => [
+                'nullable',
+                'mimes:jpeg,png,jpg,gif,svg',
+                'max:2048'
+            ],
+            'meta_title' => [
+                'required',
+                'string'
+            ],
+            'meta_description' => [
+                'required',
+                'string'
+            ],
+            'meta_keywords' => [
+                'required',
+                'string'
+            ],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Name is required',
+            'slug.required' => 'Slug is required',
+            'description.required' => 'Description is required',
+            'status.required' => 'Status is required',
+            'popular.required' => 'Popular is required',
+            'meta_title.required' => 'Meta title is required',
+            'meta_description.required' => 'Meta description is required',
+            'meta_keywords.required' => 'Meta keywords is required',
         ];
     }
 }
